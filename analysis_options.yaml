@@ -1,0 +1,26 @@
+formatter:
+  trailing_commas: preserve
+  
+linter:
+  rules:
+    public_member_api_docs: false
+    directives_ordering: false
+    lines_longer_than_80_chars: false
+    avoid_catches_without_on_clauses: false
+    unnecessary_brace_in_string_interps: false
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-raw-types: true
+  exclude:
+    - lib/l10n/gen/*
+    - "**/**.gr.dart"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.gen.dart"
+    - "lib/generated_plugin_registrant.dart"
+    - "lib/shared/pad_share_icons.dart"
+  errors:
+    invalid_annotation_target: ignore
+    discarded_futures: ignore
