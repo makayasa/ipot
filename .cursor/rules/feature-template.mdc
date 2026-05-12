@@ -1,0 +1,84 @@
+---
+description: Flutter feature folder structure template using BLoC + Freezed
+alwaysApply: false
+---
+
+# New Feature Template
+
+When creating a new feature, mirror the structure in `lib/features/zfeature_template/`. Replace `zfeature` / `Zfeature` with the actual feature name throughout.
+
+## Folder Structure
+
+```
+lib/features/<feature_name>/
+  <feature_name>.dart          # barrel: exports view/ and bloc/
+  bloc/
+    bloc.dart                  # barrel: exports <feature_name>_bloc.dart
+    <feature_name>_bloc.dart   # BLoC class + part directives
+    <feature_name>_event.dart  # Freezed events (part of bloc)
+    <feature_name>_state.dart  # Freezed states (part of bloc)
+    <feature_name>_bloc.freezed.dart  # generated — do not edit
+  view/
+    view.dart                  # barrel: exports <feature_name>_page.dart
+    <feature_name>_page.dart   # main page widget
+```
+
+## File Templates
+
+### `<feature_name>.dart`
+```dart
+export 'view/view.dart';
+export 'bloc/bloc.dart';
+```
+
+### `bloc/bloc.dart`
+```dart
+export '<feature_name>_bloc.dart';
+```
+
+### `bloc/<feature_name>_bloc.dart`
+```dart
+import 'package:bloc/bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part '<feature_name>_event.dart';
+part '<feature_name>_state.dart';
+part '<feature_name>_bloc.freezed.dart';
+
+class <FeatureName>Bloc extends Bloc<<FeatureName>Event, <FeatureName>State> {
+  <FeatureName>Bloc() : super(const <FeatureName>State.initial()) {
+    on<<FeatureName>Event>((event, emit) {
+      // TODO: implement event handler
+    });
+  }
+}
+```
+
+### `bloc/<feature_name>_event.dart`
+```dart
+part of '<feature_name>_bloc.dart';
+
+@freezed
+class <FeatureName>Event with _$<FeatureName>Event {
+  const factory <FeatureName>Event.started() = _Started;
+}
+```
+
+### `bloc/<feature_name>_state.dart`
+```dart
+part of '<feature_name>_bloc.dart';
+
+@freezed
+class <FeatureName>State with _$<FeatureName>State {
+  const factory <FeatureName>State.initial() = _Initial;
+}
+```
+
+### `view/view.dart`
+```dart
+export '<feature_name>_page.dart';
+```
+
+## After creating files
+- Run `dart run build_runner build --delete-conflicting-outputs` to generate the `.freezed.dart` file.
+- Register the route in `lib/core/routes/app_pages.dart` and `app_routes.dart`.
