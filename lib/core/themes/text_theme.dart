@@ -98,6 +98,20 @@ class AppTextTheme {
       letterSpacing: 1.80,
       color: AppColors.ink,
     ),
+    displayMedium: _font.copyWith(
+      fontSize: 32,
+      fontWeight: FontWeight.w700,
+      letterSpacing: -1.28,
+      height: 1.1,
+      color: AppColors.ink,
+    ),
+    displaySmall: _font.copyWith(
+      fontSize: 28,
+      fontWeight: FontWeight.w700,
+      letterSpacing: -1.12,
+      height: 1.1,
+      color: AppColors.ink,
+    ),
   );
 
   // TextTheme get interTextTheme => GoogleFonts.interTextTheme(baseTextTheme);

@@ -6,5 +6,9 @@ import 'package:ipot/core/themes/theme.dart';
 class AppTheme {
   static ThemeData get light => ThemeData(
     textTheme: AppTextTheme.baseTextTheme,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: AppColors.ink,
+      foregroundColor: AppColors.chip,
+    ),
   );
 }
