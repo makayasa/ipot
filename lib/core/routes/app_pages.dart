@@ -1,17 +1,28 @@
 import 'package:go_router/go_router.dart';
 import 'package:ipot/features/home/home.dart';
 
+import '../../features/menu/menu.dart';
+import '../../features/table/table.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
   static final router = GoRouter(
-    initialLocation: AppRoutes.home,
+    initialLocation: AppRoutes.table('67'),
     routes: [
       GoRoute(
         path: AppRoutes.home,
         builder: (context, state) => const HomePage(),
+      ),
+      GoRoute(
+        path: AppRoutes.table(':tableId'),
+        builder: (context, state) => const TablePage(),
+      ),
+      GoRoute(
+        path: AppRoutes.menu,
+        builder: (context, state) => const MenuPage(),
       ),
     ],
   );
