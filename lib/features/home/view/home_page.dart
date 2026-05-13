@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ipot/core/shared/widgets/widget.dart';
 import 'package:ipot/features/home/bloc/bloc.dart';
+
+import '../../../core/themes/theme.dart';
 
 part 'home_view.dart';
 
