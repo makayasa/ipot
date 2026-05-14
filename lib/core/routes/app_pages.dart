@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:ipot/features/home/home.dart';
 
+import '../../features/cart/cart.dart';
 import '../../features/menu/menu.dart';
 import '../../features/table/table.dart';
 
@@ -23,6 +24,10 @@ class AppPages {
       GoRoute(
         path: AppRoutes.menu,
         builder: (context, state) => const MenuPage(),
+      ),
+      GoRoute(
+        path: AppRoutes.cart,
+        builder: (context, state) => const CartPage(),
       ),
     ],
   );

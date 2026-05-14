@@ -1,6 +1,6 @@
 part of 'table_bloc.dart';
 
 @freezed
-class TableEvent with _$TableEvent {
-  const factory TableEvent.fetchTable() = _FetchTable;
+abstract class TableEvent with _$TableEvent {
+  const factory TableEvent.checkTableAvailable({required String tableId}) = _CheckTableAvailable;
 }

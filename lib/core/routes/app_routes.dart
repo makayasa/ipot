@@ -12,6 +12,6 @@ abstract class _Paths {
   static const home = '/';
   // static const table = '/table';
   static String table(String tableId) => '/table/$tableId';
-  static const cart = '/cart';
   static const menu = '/menu';
+  static const cart = '/cart';
 }
