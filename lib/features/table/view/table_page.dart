@@ -35,7 +35,7 @@ class _TablePageState extends State<TablePage> {
               TableBloc(
                 tableId: widget.tableId,
                 tableUsecase: TableUsecase(
-                  tableRepository: context.read<TableRepositoryImpl>(),
+                  tableRepository: context.read<TableRepository>(),
                 ),
               )..add(
                 TableEvent.checkTableAvailable(tableId: widget.tableId),

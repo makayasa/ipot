@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
     final dio = Dio();
     return MultiRepositoryProvider(
       providers: [
-        RepositoryProvider(
+        RepositoryProvider<MenuRepository>(
           create: (context) => MenuRepositoryImpl(),
         ),
-        RepositoryProvider(
+        RepositoryProvider<TableRepository>(
           create: (context) => TableRepositoryImpl(
             dioTableEndpoint: DioTableEndpoint(dio: dio),
           ),
