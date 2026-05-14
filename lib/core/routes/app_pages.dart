@@ -18,7 +18,7 @@ class AppPages {
       ),
       GoRoute(
         path: AppRoutes.table(':tableId'),
-        builder: (context, state) => const TablePage(),
+        builder: (context, state) => TablePage(tableId: state.pathParameters['tableId']!),
       ),
       GoRoute(
         path: AppRoutes.menu,
