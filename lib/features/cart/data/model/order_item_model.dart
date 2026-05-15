@@ -34,5 +34,6 @@ abstract class OrderItemModel with _$OrderItemModel {
         quantity: quantity,
         customerNote: customerNote,
         customizations: customizations.map((e) => e.toEntity()).toList(),
+        price: 0,
       );
 }

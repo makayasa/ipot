@@ -12,6 +12,7 @@ abstract class OrderItem with _$OrderItem {
     required int quantity,
     required String customerNote,
     required List<OrderItemOption> customizations,
+    required double price,
   }) = _OrderItem;
   factory OrderItem.fromJson(Map<String, dynamic> json) => _$OrderItemFromJson(json);
 }

@@ -42,7 +42,10 @@ class AppPages {
       ),
       GoRoute(
         path: AppRoutes.cart,
-        builder: (context, state) => const CartPage(),
+        builder: (context, state) => CartPage(
+          tableId: (state.extra as Map<String, dynamic>)['tableId'] as String,
+          menuItems: (state.extra as Map<String, dynamic>)['menuItems'] as List<MenuItem>,
+        ),
       ),
     ],
   );

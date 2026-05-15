@@ -80,6 +80,7 @@ class DetailMenuBloc extends Bloc<DetailMenuEvent, DetailMenuState> {
       quantity: state.quantity,
       customerNote: '',
       customizations: customizations,
+      price: state.price,
     );
     emit(state.copyWith(isAddingToCart: true, orderItem: orderItem));
   }

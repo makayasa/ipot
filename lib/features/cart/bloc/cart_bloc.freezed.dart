@@ -298,12 +298,12 @@ $CartStateCopyWith<CartState> get copyWith => _$CartStateCopyWithImpl<CartState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartState&&const DeepCollectionEquality().equals(other.items, items)&&const DeepCollectionEquality().equals(other.orderModel, orderModel));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CartState&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.orderModel, orderModel) || other.orderModel == orderModel));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),const DeepCollectionEquality().hash(orderModel));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(items),orderModel);
 
 @override
 String toString() {
@@ -322,7 +322,7 @@ $Res call({
 });
 
 
-
+$OrderModelCopyWith<$Res>? get orderModel;
 
 }
 /// @nodoc
@@ -342,7 +342,19 @@ as List<OrderItem>,orderModel: freezed == orderModel ? _self.orderModel : orderM
 as OrderModel?,
   ));
 }
+/// Create a copy of CartState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$OrderModelCopyWith<$Res>? get orderModel {
+    if (_self.orderModel == null) {
+    return null;
+  }
 
+  return $OrderModelCopyWith<$Res>(_self.orderModel!, (value) {
+    return _then(_self.copyWith(orderModel: value));
+  });
+}
 }
 
 
@@ -502,12 +514,12 @@ _$CartStateCopyWith<_CartState> get copyWith => __$CartStateCopyWithImpl<_CartSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CartState&&const DeepCollectionEquality().equals(other._items, _items)&&const DeepCollectionEquality().equals(other.orderModel, orderModel));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CartState&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.orderModel, orderModel) || other.orderModel == orderModel));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),const DeepCollectionEquality().hash(orderModel));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_items),orderModel);
 
 @override
 String toString() {
@@ -526,7 +538,7 @@ $Res call({
 });
 
 
-
+@override $OrderModelCopyWith<$Res>? get orderModel;
 
 }
 /// @nodoc
@@ -547,7 +559,19 @@ as OrderModel?,
   ));
 }
 
+/// Create a copy of CartState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$OrderModelCopyWith<$Res>? get orderModel {
+    if (_self.orderModel == null) {
+    return null;
+  }
 
+  return $OrderModelCopyWith<$Res>(_self.orderModel!, (value) {
+    return _then(_self.copyWith(orderModel: value));
+  });
+}
 }
 
 // dart format on

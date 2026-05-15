@@ -108,7 +108,10 @@ class _TableView extends StatelessWidget {
                             right: 16,
                             child: GestureDetector(
                               onTap: () {
-                                context.push(AppRoutes.cart);
+                                context.push(AppRoutes.cart, extra: {
+                                  'tableId': context.read<TableBloc>().state.tableId,
+                                  'menuItems': context.read<MenuBloc>().state.items,
+                                });
                               },
                               child: Container(
                                 padding: const .symmetric(horizontal: 16),

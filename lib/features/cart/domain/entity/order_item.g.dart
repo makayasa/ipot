@@ -13,6 +13,7 @@ _OrderItem _$OrderItemFromJson(Map<String, dynamic> json) => _OrderItem(
   customizations: (json['customizations'] as List<dynamic>)
       .map((e) => OrderItemOption.fromJson(e as Map<String, dynamic>))
       .toList(),
+  price: (json['price'] as num).toDouble(),
 );
 
 Map<String, dynamic> _$OrderItemToJson(_OrderItem instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$OrderItemToJson(_OrderItem instance) =>
       'quantity': instance.quantity,
       'customer_note': instance.customerNote,
       'customizations': instance.customizations.map((e) => e.toJson()).toList(),
+      'price': instance.price,
     };
