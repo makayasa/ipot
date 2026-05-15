@@ -1,6 +1,9 @@
 part of 'cart_bloc.dart';
 
 @freezed
-class CartState with _$CartState {
-  const factory CartState.initial() = _Initial;
+abstract class CartState with _$CartState {
+  const factory CartState({
+    @Default([]) List<OrderItem> items,
+    OrderModel? orderModel,
+  }) = _CartState;
 }

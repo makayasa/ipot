@@ -37,6 +37,7 @@ class AppPages {
         path: AppRoutes.detailMenu(':menuId'),
         builder: (context, state) => DetailMenuPage(
           menuId: state.pathParameters['menuId']!,
+          menuItem: state.extra as MenuItem,
         ),
       ),
       GoRoute(

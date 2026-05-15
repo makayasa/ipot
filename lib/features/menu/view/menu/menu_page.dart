@@ -83,8 +83,9 @@ class _MenuView extends StatelessWidget {
                       onPressed: () {
                         context.push(
                           AppRoutes.detailMenu(
-                            menuItem![index].id.toString(),
+                            menuItem[index].id.toString(),
                           ),
+                          extra: menuItem[index],
                         );
                       },
                       icon: const Icon(Icons.add),

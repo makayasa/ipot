@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ipot/core/engine.dart';
 import 'package:ipot/core/themes/theme.dart';
 
+import 'features/cart/cart.dart';
 import 'features/menu/menu.dart';
 import 'features/table/table.dart';
 
@@ -28,10 +29,17 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ],
-      child: MaterialApp.router(
-        title: 'Ipot',
-        theme: AppTheme.light,
-        routerConfig: AppPages.router,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => CartBloc(),
+          ),
+        ],
+        child: MaterialApp.router(
+          title: 'Ipot',
+          theme: AppTheme.light,
+          routerConfig: AppPages.router,
+        ),
       ),
     );
   }

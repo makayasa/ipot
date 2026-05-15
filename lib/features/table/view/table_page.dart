@@ -42,9 +42,6 @@ class _TablePageState extends State<TablePage> {
               ),
         ),
         BlocProvider(
-          create: (context) => CartBloc(),
-        ),
-        BlocProvider(
           create: (context) => MenuBloc(
             menuUsecase: MenuUsecase(
               menuRepository: context.read<MenuRepository>(),
@@ -100,45 +97,52 @@ class _TableView extends StatelessWidget {
                           MenuPage(),
                         ],
                       ),
-                      Positioned(
-                        bottom: MediaQuery.of(context).size.height * 0.05,
-                        left: 16,
-                        right: 16,
-                        child: GestureDetector(
-                          onTap: () {
-                            context.push(AppRoutes.cart);
-                          },
-                          child: Container(
-                            padding: const .symmetric(horizontal: 16),
-                            height: 80,
-                            decoration: BoxDecoration(
-                              color: AppColors.ink,
-                              borderRadius: .circular(16),
+                      BlocSelector<CartBloc, CartState, int>(
+                        selector: (state) {
+                          return state.items.length;
+                        },
+                        builder: (context, totalItems) {
+                          return Positioned(
+                            bottom: MediaQuery.of(context).size.height * 0.05,
+                            left: 16,
+                            right: 16,
+                            child: GestureDetector(
+                              onTap: () {
+                                context.push(AppRoutes.cart);
+                              },
+                              child: Container(
+                                padding: const .symmetric(horizontal: 16),
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: AppColors.ink,
+                                  borderRadius: .circular(16),
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.shopping_cart_outlined,
+                                      color: AppColors.chip,
+                                      size: 32,
+                                    ),
+                                    const SizedBox(width: 5),
+                                    DefaultText.headlineMedium(
+                                      'Total Items : $totalItems',
+                                      color: AppColors.chip,
+                                    ),
+                                    Spacer(),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.arrow_forward_ios_outlined,
+                                        color: AppColors.chip,
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.shopping_cart_outlined,
-                                  color: AppColors.chip,
-                                  size: 32,
-                                ),
-                                const SizedBox(width: 5),
-                                DefaultText.headlineMedium(
-                                  'Total Items : 0',
-                                  color: AppColors.chip,
-                                ),
-                                Spacer(),
-                                IconButton(
-                                  icon: Icon(
-                                    Icons.arrow_forward_ios_outlined,
-                                    color: AppColors.chip,
-                                  ),
-                                  onPressed: () {},
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                          );
+                        },
                       ),
                     ],
                   ),

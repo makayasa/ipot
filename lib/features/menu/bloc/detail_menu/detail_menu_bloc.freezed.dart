@@ -55,11 +55,16 @@ extension DetailMenuEventPatterns on DetailMenuEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( _SelectOption value)?  selectOption,TResult Function( _IncrementQuantity value)?  incrementQuantity,TResult Function( _DecrementQuantity value)?  decrementQuantity,TResult Function( _CalculatePrice value)?  calculatePrice,TResult Function( _AddToCart value)?  addToCart,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case _:
+return started(_that);case _SelectOption() when selectOption != null:
+return selectOption(_that);case _IncrementQuantity() when incrementQuantity != null:
+return incrementQuantity(_that);case _DecrementQuantity() when decrementQuantity != null:
+return decrementQuantity(_that);case _CalculatePrice() when calculatePrice != null:
+return calculatePrice(_that);case _AddToCart() when addToCart != null:
+return addToCart(_that);case _:
   return orElse();
 
 }
@@ -77,11 +82,16 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( _SelectOption value)  selectOption,required TResult Function( _IncrementQuantity value)  incrementQuantity,required TResult Function( _DecrementQuantity value)  decrementQuantity,required TResult Function( _CalculatePrice value)  calculatePrice,required TResult Function( _AddToCart value)  addToCart,}){
 final _that = this;
 switch (_that) {
 case _Started():
-return started(_that);case _:
+return started(_that);case _SelectOption():
+return selectOption(_that);case _IncrementQuantity():
+return incrementQuantity(_that);case _DecrementQuantity():
+return decrementQuantity(_that);case _CalculatePrice():
+return calculatePrice(_that);case _AddToCart():
+return addToCart(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -98,11 +108,16 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( _SelectOption value)?  selectOption,TResult? Function( _IncrementQuantity value)?  incrementQuantity,TResult? Function( _DecrementQuantity value)?  decrementQuantity,TResult? Function( _CalculatePrice value)?  calculatePrice,TResult? Function( _AddToCart value)?  addToCart,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case _:
+return started(_that);case _SelectOption() when selectOption != null:
+return selectOption(_that);case _IncrementQuantity() when incrementQuantity != null:
+return incrementQuantity(_that);case _DecrementQuantity() when decrementQuantity != null:
+return decrementQuantity(_that);case _CalculatePrice() when calculatePrice != null:
+return calculatePrice(_that);case _AddToCart() when addToCart != null:
+return addToCart(_that);case _:
   return null;
 
 }
@@ -119,10 +134,15 @@ return started(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( int optionId)?  selectOption,TResult Function()?  incrementQuantity,TResult Function()?  decrementQuantity,TResult Function()?  calculatePrice,TResult Function()?  addToCart,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case _:
+return started();case _SelectOption() when selectOption != null:
+return selectOption(_that.optionId);case _IncrementQuantity() when incrementQuantity != null:
+return incrementQuantity();case _DecrementQuantity() when decrementQuantity != null:
+return decrementQuantity();case _CalculatePrice() when calculatePrice != null:
+return calculatePrice();case _AddToCart() when addToCart != null:
+return addToCart();case _:
   return orElse();
 
 }
@@ -140,10 +160,15 @@ return started();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( int optionId)  selectOption,required TResult Function()  incrementQuantity,required TResult Function()  decrementQuantity,required TResult Function()  calculatePrice,required TResult Function()  addToCart,}) {final _that = this;
 switch (_that) {
 case _Started():
-return started();case _:
+return started();case _SelectOption():
+return selectOption(_that.optionId);case _IncrementQuantity():
+return incrementQuantity();case _DecrementQuantity():
+return decrementQuantity();case _CalculatePrice():
+return calculatePrice();case _AddToCart():
+return addToCart();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -160,10 +185,15 @@ return started();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( int optionId)?  selectOption,TResult? Function()?  incrementQuantity,TResult? Function()?  decrementQuantity,TResult? Function()?  calculatePrice,TResult? Function()?  addToCart,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case _:
+return started();case _SelectOption() when selectOption != null:
+return selectOption(_that.optionId);case _IncrementQuantity() when incrementQuantity != null:
+return incrementQuantity();case _DecrementQuantity() when decrementQuantity != null:
+return decrementQuantity();case _CalculatePrice() when calculatePrice != null:
+return calculatePrice();case _AddToCart() when addToCart != null:
+return addToCart();case _:
   return null;
 
 }
@@ -204,9 +234,203 @@ String toString() {
 
 
 /// @nodoc
+
+
+class _SelectOption implements DetailMenuEvent {
+  const _SelectOption({required this.optionId});
+  
+
+ final  int optionId;
+
+/// Create a copy of DetailMenuEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$SelectOptionCopyWith<_SelectOption> get copyWith => __$SelectOptionCopyWithImpl<_SelectOption>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _SelectOption&&(identical(other.optionId, optionId) || other.optionId == optionId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,optionId);
+
+@override
+String toString() {
+  return 'DetailMenuEvent.selectOption(optionId: $optionId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$SelectOptionCopyWith<$Res> implements $DetailMenuEventCopyWith<$Res> {
+  factory _$SelectOptionCopyWith(_SelectOption value, $Res Function(_SelectOption) _then) = __$SelectOptionCopyWithImpl;
+@useResult
+$Res call({
+ int optionId
+});
+
+
+
+
+}
+/// @nodoc
+class __$SelectOptionCopyWithImpl<$Res>
+    implements _$SelectOptionCopyWith<$Res> {
+  __$SelectOptionCopyWithImpl(this._self, this._then);
+
+  final _SelectOption _self;
+  final $Res Function(_SelectOption) _then;
+
+/// Create a copy of DetailMenuEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? optionId = null,}) {
+  return _then(_SelectOption(
+optionId: null == optionId ? _self.optionId : optionId // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class _IncrementQuantity implements DetailMenuEvent {
+  const _IncrementQuantity();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _IncrementQuantity);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'DetailMenuEvent.incrementQuantity()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _DecrementQuantity implements DetailMenuEvent {
+  const _DecrementQuantity();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DecrementQuantity);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'DetailMenuEvent.decrementQuantity()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _CalculatePrice implements DetailMenuEvent {
+  const _CalculatePrice();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CalculatePrice);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'DetailMenuEvent.calculatePrice()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _AddToCart implements DetailMenuEvent {
+  const _AddToCart();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AddToCart);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'DetailMenuEvent.addToCart()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
 mixin _$DetailMenuState {
 
- bool get isLoading; MenuItem? get menuItem; String get error;
+ bool get isLoading; MenuItem get menuItem; String get error; double get price; int get quantity; List<int> get selectedOptionIds; bool get isAddingToCart; OrderItem? get orderItem;
 /// Create a copy of DetailMenuState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -217,16 +441,16 @@ $DetailMenuStateCopyWith<DetailMenuState> get copyWith => _$DetailMenuStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetailMenuState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.menuItem, menuItem) || other.menuItem == menuItem)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetailMenuState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.menuItem, menuItem) || other.menuItem == menuItem)&&(identical(other.error, error) || other.error == error)&&(identical(other.price, price) || other.price == price)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&const DeepCollectionEquality().equals(other.selectedOptionIds, selectedOptionIds)&&(identical(other.isAddingToCart, isAddingToCart) || other.isAddingToCart == isAddingToCart)&&(identical(other.orderItem, orderItem) || other.orderItem == orderItem));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,menuItem,error);
+int get hashCode => Object.hash(runtimeType,isLoading,menuItem,error,price,quantity,const DeepCollectionEquality().hash(selectedOptionIds),isAddingToCart,orderItem);
 
 @override
 String toString() {
-  return 'DetailMenuState(isLoading: $isLoading, menuItem: $menuItem, error: $error)';
+  return 'DetailMenuState(isLoading: $isLoading, menuItem: $menuItem, error: $error, price: $price, quantity: $quantity, selectedOptionIds: $selectedOptionIds, isAddingToCart: $isAddingToCart, orderItem: $orderItem)';
 }
 
 
@@ -237,11 +461,11 @@ abstract mixin class $DetailMenuStateCopyWith<$Res>  {
   factory $DetailMenuStateCopyWith(DetailMenuState value, $Res Function(DetailMenuState) _then) = _$DetailMenuStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, MenuItem? menuItem, String error
+ bool isLoading, MenuItem menuItem, String error, double price, int quantity, List<int> selectedOptionIds, bool isAddingToCart, OrderItem? orderItem
 });
 
 
-$MenuItemCopyWith<$Res>? get menuItem;
+$MenuItemCopyWith<$Res> get menuItem;$OrderItemCopyWith<$Res>? get orderItem;
 
 }
 /// @nodoc
@@ -254,25 +478,39 @@ class _$DetailMenuStateCopyWithImpl<$Res>
 
 /// Create a copy of DetailMenuState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? menuItem = freezed,Object? error = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? menuItem = null,Object? error = null,Object? price = null,Object? quantity = null,Object? selectedOptionIds = null,Object? isAddingToCart = null,Object? orderItem = freezed,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,menuItem: freezed == menuItem ? _self.menuItem : menuItem // ignore: cast_nullable_to_non_nullable
-as MenuItem?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as String,
+as bool,menuItem: null == menuItem ? _self.menuItem : menuItem // ignore: cast_nullable_to_non_nullable
+as MenuItem,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as double,quantity: null == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
+as int,selectedOptionIds: null == selectedOptionIds ? _self.selectedOptionIds : selectedOptionIds // ignore: cast_nullable_to_non_nullable
+as List<int>,isAddingToCart: null == isAddingToCart ? _self.isAddingToCart : isAddingToCart // ignore: cast_nullable_to_non_nullable
+as bool,orderItem: freezed == orderItem ? _self.orderItem : orderItem // ignore: cast_nullable_to_non_nullable
+as OrderItem?,
   ));
 }
 /// Create a copy of DetailMenuState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$MenuItemCopyWith<$Res>? get menuItem {
-    if (_self.menuItem == null) {
+$MenuItemCopyWith<$Res> get menuItem {
+  
+  return $MenuItemCopyWith<$Res>(_self.menuItem, (value) {
+    return _then(_self.copyWith(menuItem: value));
+  });
+}/// Create a copy of DetailMenuState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$OrderItemCopyWith<$Res>? get orderItem {
+    if (_self.orderItem == null) {
     return null;
   }
 
-  return $MenuItemCopyWith<$Res>(_self.menuItem!, (value) {
-    return _then(_self.copyWith(menuItem: value));
+  return $OrderItemCopyWith<$Res>(_self.orderItem!, (value) {
+    return _then(_self.copyWith(orderItem: value));
   });
 }
 }
@@ -356,10 +594,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  MenuItem? menuItem,  String error)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  MenuItem menuItem,  String error,  double price,  int quantity,  List<int> selectedOptionIds,  bool isAddingToCart,  OrderItem? orderItem)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _DetailMenuState() when $default != null:
-return $default(_that.isLoading,_that.menuItem,_that.error);case _:
+return $default(_that.isLoading,_that.menuItem,_that.error,_that.price,_that.quantity,_that.selectedOptionIds,_that.isAddingToCart,_that.orderItem);case _:
   return orElse();
 
 }
@@ -377,10 +615,10 @@ return $default(_that.isLoading,_that.menuItem,_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  MenuItem? menuItem,  String error)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  MenuItem menuItem,  String error,  double price,  int quantity,  List<int> selectedOptionIds,  bool isAddingToCart,  OrderItem? orderItem)  $default,) {final _that = this;
 switch (_that) {
 case _DetailMenuState():
-return $default(_that.isLoading,_that.menuItem,_that.error);case _:
+return $default(_that.isLoading,_that.menuItem,_that.error,_that.price,_that.quantity,_that.selectedOptionIds,_that.isAddingToCart,_that.orderItem);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -397,10 +635,10 @@ return $default(_that.isLoading,_that.menuItem,_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  MenuItem? menuItem,  String error)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  MenuItem menuItem,  String error,  double price,  int quantity,  List<int> selectedOptionIds,  bool isAddingToCart,  OrderItem? orderItem)?  $default,) {final _that = this;
 switch (_that) {
 case _DetailMenuState() when $default != null:
-return $default(_that.isLoading,_that.menuItem,_that.error);case _:
+return $default(_that.isLoading,_that.menuItem,_that.error,_that.price,_that.quantity,_that.selectedOptionIds,_that.isAddingToCart,_that.orderItem);case _:
   return null;
 
 }
@@ -412,12 +650,23 @@ return $default(_that.isLoading,_that.menuItem,_that.error);case _:
 
 
 class _DetailMenuState implements DetailMenuState {
-  const _DetailMenuState({this.isLoading = false, this.menuItem = null, this.error = ''});
+  const _DetailMenuState({this.isLoading = false, required this.menuItem, this.error = '', this.price = 0, this.quantity = 0, final  List<int> selectedOptionIds = const [], this.isAddingToCart = false, this.orderItem = null}): _selectedOptionIds = selectedOptionIds;
   
 
 @override@JsonKey() final  bool isLoading;
-@override@JsonKey() final  MenuItem? menuItem;
+@override final  MenuItem menuItem;
 @override@JsonKey() final  String error;
+@override@JsonKey() final  double price;
+@override@JsonKey() final  int quantity;
+ final  List<int> _selectedOptionIds;
+@override@JsonKey() List<int> get selectedOptionIds {
+  if (_selectedOptionIds is EqualUnmodifiableListView) return _selectedOptionIds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_selectedOptionIds);
+}
+
+@override@JsonKey() final  bool isAddingToCart;
+@override@JsonKey() final  OrderItem? orderItem;
 
 /// Create a copy of DetailMenuState
 /// with the given fields replaced by the non-null parameter values.
@@ -429,16 +678,16 @@ _$DetailMenuStateCopyWith<_DetailMenuState> get copyWith => __$DetailMenuStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DetailMenuState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.menuItem, menuItem) || other.menuItem == menuItem)&&(identical(other.error, error) || other.error == error));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DetailMenuState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.menuItem, menuItem) || other.menuItem == menuItem)&&(identical(other.error, error) || other.error == error)&&(identical(other.price, price) || other.price == price)&&(identical(other.quantity, quantity) || other.quantity == quantity)&&const DeepCollectionEquality().equals(other._selectedOptionIds, _selectedOptionIds)&&(identical(other.isAddingToCart, isAddingToCart) || other.isAddingToCart == isAddingToCart)&&(identical(other.orderItem, orderItem) || other.orderItem == orderItem));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,menuItem,error);
+int get hashCode => Object.hash(runtimeType,isLoading,menuItem,error,price,quantity,const DeepCollectionEquality().hash(_selectedOptionIds),isAddingToCart,orderItem);
 
 @override
 String toString() {
-  return 'DetailMenuState(isLoading: $isLoading, menuItem: $menuItem, error: $error)';
+  return 'DetailMenuState(isLoading: $isLoading, menuItem: $menuItem, error: $error, price: $price, quantity: $quantity, selectedOptionIds: $selectedOptionIds, isAddingToCart: $isAddingToCart, orderItem: $orderItem)';
 }
 
 
@@ -449,11 +698,11 @@ abstract mixin class _$DetailMenuStateCopyWith<$Res> implements $DetailMenuState
   factory _$DetailMenuStateCopyWith(_DetailMenuState value, $Res Function(_DetailMenuState) _then) = __$DetailMenuStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, MenuItem? menuItem, String error
+ bool isLoading, MenuItem menuItem, String error, double price, int quantity, List<int> selectedOptionIds, bool isAddingToCart, OrderItem? orderItem
 });
 
 
-@override $MenuItemCopyWith<$Res>? get menuItem;
+@override $MenuItemCopyWith<$Res> get menuItem;@override $OrderItemCopyWith<$Res>? get orderItem;
 
 }
 /// @nodoc
@@ -466,12 +715,17 @@ class __$DetailMenuStateCopyWithImpl<$Res>
 
 /// Create a copy of DetailMenuState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? menuItem = freezed,Object? error = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? menuItem = null,Object? error = null,Object? price = null,Object? quantity = null,Object? selectedOptionIds = null,Object? isAddingToCart = null,Object? orderItem = freezed,}) {
   return _then(_DetailMenuState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,menuItem: freezed == menuItem ? _self.menuItem : menuItem // ignore: cast_nullable_to_non_nullable
-as MenuItem?,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
-as String,
+as bool,menuItem: null == menuItem ? _self.menuItem : menuItem // ignore: cast_nullable_to_non_nullable
+as MenuItem,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as double,quantity: null == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
+as int,selectedOptionIds: null == selectedOptionIds ? _self._selectedOptionIds : selectedOptionIds // ignore: cast_nullable_to_non_nullable
+as List<int>,isAddingToCart: null == isAddingToCart ? _self.isAddingToCart : isAddingToCart // ignore: cast_nullable_to_non_nullable
+as bool,orderItem: freezed == orderItem ? _self.orderItem : orderItem // ignore: cast_nullable_to_non_nullable
+as OrderItem?,
   ));
 }
 
@@ -479,13 +733,22 @@ as String,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$MenuItemCopyWith<$Res>? get menuItem {
-    if (_self.menuItem == null) {
+$MenuItemCopyWith<$Res> get menuItem {
+  
+  return $MenuItemCopyWith<$Res>(_self.menuItem, (value) {
+    return _then(_self.copyWith(menuItem: value));
+  });
+}/// Create a copy of DetailMenuState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$OrderItemCopyWith<$Res>? get orderItem {
+    if (_self.orderItem == null) {
     return null;
   }
 
-  return $MenuItemCopyWith<$Res>(_self.menuItem!, (value) {
-    return _then(_self.copyWith(menuItem: value));
+  return $OrderItemCopyWith<$Res>(_self.orderItem!, (value) {
+    return _then(_self.copyWith(orderItem: value));
   });
 }
 }
