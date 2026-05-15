@@ -24,6 +24,20 @@ class AppPages {
       GoRoute(
         path: AppRoutes.menu,
         builder: (context, state) => const MenuPage(),
+        routes: [
+          // GoRoute(
+          //   path: AppRoutes.detailMenu(':menuId'),
+          //   builder: (context, state) => DetailMenuPage(
+          //     menuId: state.pathParameters['menuId']!,
+          //   ),
+          // ),
+        ],
+      ),
+      GoRoute(
+        path: AppRoutes.detailMenu(':menuId'),
+        builder: (context, state) => DetailMenuPage(
+          menuId: state.pathParameters['menuId']!,
+        ),
       ),
       GoRoute(
         path: AppRoutes.cart,

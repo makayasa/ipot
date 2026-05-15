@@ -97,6 +97,7 @@ class _TableView extends StatelessWidget {
                               return DefaultText.displaySmall('Table $state');
                             },
                           ),
+                          MenuPage(),
                         ],
                       ),
                       Positioned(

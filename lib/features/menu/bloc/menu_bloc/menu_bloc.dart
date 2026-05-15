@@ -1,6 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ipot/features/menu/menu.dart';
+import 'package:ipot/features/table/domain/entity/table.dart';
+
+// import '../../table/table.dart';
 
 part 'menu_event.dart';
 part 'menu_state.dart';
@@ -16,8 +19,14 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     _FetchMenu event,
     Emitter<MenuState> emit,
   ) async {
-    emit(state.copyWith(isLoading: true));
-    // final items = await _menuRepository.getMenu();
-    // emit(state.copyWith(isLoading: false, items: items));
+    try {
+      emit(state.copyWith(isLoading: true));
+      final table = await _menuUsecase.getMenu();
+      emit(
+        state.copyWith(isLoading: false, table: table, items: table.items),
+      );
+    } catch (e) {
+      emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
   }
 }

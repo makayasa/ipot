@@ -1,8 +1,11 @@
+import 'package:ipot/features/table/table.dart';
+
+import '../../../table/data/data.dart';
 import '../../menu.dart';
 
 class MenuRepositoryImpl implements MenuRepository {
   @override
-  Future<List<MenuItem>> getMenu() async {
+  Future<Table> getMenu() async {
     final mockData = {
       "restaurant": {"id": "R001", "name": "Sushi Zen", "table_id": "T001"},
       "categories": [
@@ -88,6 +91,8 @@ class MenuRepositoryImpl implements MenuRepository {
         },
       ],
     };
-    return [];
+    final tableData = TableModel.fromJson(mockData);
+    return tableData.toEntity();
+    // return [];
   }
 }

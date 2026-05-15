@@ -14,34 +14,32 @@ abstract class MenuItemModel with _$MenuItemModel {
     required String description,
     required double price,
     required int categoryId,
-    required String imageUrl,
+    String? imageUrl,
+    @JsonKey(name: 'customization_groups')
     required List<CustomizationModel> customizations,
   }) = _MenuItemModel;
 
-  factory MenuItemModel.fromJson(Map<String, dynamic> json) =>
-      _$MenuItemModelFromJson(json);
+  factory MenuItemModel.fromJson(Map<String, dynamic> json) => _$MenuItemModelFromJson(json);
 
   const MenuItemModel._();
 
   factory MenuItemModel.fromEntity(MenuItem entity) => MenuItemModel(
-        id: entity.id,
-        name: entity.name,
-        description: entity.description,
-        price: entity.price,
-        categoryId: entity.categoryId,
-        imageUrl: entity.imageUrl,
-        customizations: entity.customizations
-            .map(CustomizationModel.fromEntity)
-            .toList(),
-      );
+    id: entity.id,
+    name: entity.name,
+    description: entity.description,
+    price: entity.price,
+    categoryId: entity.categoryId,
+    imageUrl: entity.imageUrl,
+    customizations: entity.customizations.map(CustomizationModel.fromEntity).toList(),
+  );
 
   MenuItem toEntity() => MenuItem(
-        id: id,
-        name: name,
-        description: description,
-        price: price,
-        categoryId: categoryId,
-        imageUrl: imageUrl,
-        customizations: customizations.map((e) => e.toEntity()).toList(),
-      );
+    id: id,
+    name: name,
+    description: description,
+    price: price,
+    categoryId: categoryId,
+    imageUrl: imageUrl,
+    customizations: customizations.map((e) => e.toEntity()).toList(),
+  );
 }

@@ -13,7 +13,8 @@ abstract class MenuItem with _$MenuItem {
     required String description,
     required double price,
     required int categoryId,
-    required String imageUrl,
+    String? imageUrl,
+    @JsonKey(name: 'customization_groups')
     required List<Customization> customizations,
   }) = _MenuItem;
 

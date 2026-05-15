@@ -278,7 +278,7 @@ as String,
 /// @nodoc
 mixin _$MenuState {
 
- bool get isLoading; List<MenuItem> get items;
+ bool get isLoading; Table? get table; List<MenuItem> get items; String get error;
 /// Create a copy of MenuState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -289,16 +289,16 @@ $MenuStateCopyWith<MenuState> get copyWith => _$MenuStateCopyWithImpl<MenuState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MenuState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&const DeepCollectionEquality().equals(other.items, items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MenuState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.table, table) || other.table == table)&&const DeepCollectionEquality().equals(other.items, items)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,const DeepCollectionEquality().hash(items));
+int get hashCode => Object.hash(runtimeType,isLoading,table,const DeepCollectionEquality().hash(items),error);
 
 @override
 String toString() {
-  return 'MenuState(isLoading: $isLoading, items: $items)';
+  return 'MenuState(isLoading: $isLoading, table: $table, items: $items, error: $error)';
 }
 
 
@@ -309,11 +309,11 @@ abstract mixin class $MenuStateCopyWith<$Res>  {
   factory $MenuStateCopyWith(MenuState value, $Res Function(MenuState) _then) = _$MenuStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, List<MenuItem> items
+ bool isLoading, Table? table, List<MenuItem> items, String error
 });
 
 
-
+$TableCopyWith<$Res>? get table;
 
 }
 /// @nodoc
@@ -326,14 +326,28 @@ class _$MenuStateCopyWithImpl<$Res>
 
 /// Create a copy of MenuState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? items = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? table = freezed,Object? items = null,Object? error = null,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
-as List<MenuItem>,
+as bool,table: freezed == table ? _self.table : table // ignore: cast_nullable_to_non_nullable
+as Table?,items: null == items ? _self.items : items // ignore: cast_nullable_to_non_nullable
+as List<MenuItem>,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
+/// Create a copy of MenuState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TableCopyWith<$Res>? get table {
+    if (_self.table == null) {
+    return null;
+  }
 
+  return $TableCopyWith<$Res>(_self.table!, (value) {
+    return _then(_self.copyWith(table: value));
+  });
+}
 }
 
 
@@ -415,10 +429,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  List<MenuItem> items)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  Table? table,  List<MenuItem> items,  String error)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MenuState() when $default != null:
-return $default(_that.isLoading,_that.items);case _:
+return $default(_that.isLoading,_that.table,_that.items,_that.error);case _:
   return orElse();
 
 }
@@ -436,10 +450,10 @@ return $default(_that.isLoading,_that.items);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  List<MenuItem> items)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  Table? table,  List<MenuItem> items,  String error)  $default,) {final _that = this;
 switch (_that) {
 case _MenuState():
-return $default(_that.isLoading,_that.items);case _:
+return $default(_that.isLoading,_that.table,_that.items,_that.error);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -456,10 +470,10 @@ return $default(_that.isLoading,_that.items);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  List<MenuItem> items)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  Table? table,  List<MenuItem> items,  String error)?  $default,) {final _that = this;
 switch (_that) {
 case _MenuState() when $default != null:
-return $default(_that.isLoading,_that.items);case _:
+return $default(_that.isLoading,_that.table,_that.items,_that.error);case _:
   return null;
 
 }
@@ -471,10 +485,11 @@ return $default(_that.isLoading,_that.items);case _:
 
 
 class _MenuState implements MenuState {
-  const _MenuState({this.isLoading = false, final  List<MenuItem> items = const []}): _items = items;
+  const _MenuState({this.isLoading = false, this.table = null, final  List<MenuItem> items = const [], this.error = ''}): _items = items;
   
 
 @override@JsonKey() final  bool isLoading;
+@override@JsonKey() final  Table? table;
  final  List<MenuItem> _items;
 @override@JsonKey() List<MenuItem> get items {
   if (_items is EqualUnmodifiableListView) return _items;
@@ -482,6 +497,7 @@ class _MenuState implements MenuState {
   return EqualUnmodifiableListView(_items);
 }
 
+@override@JsonKey() final  String error;
 
 /// Create a copy of MenuState
 /// with the given fields replaced by the non-null parameter values.
@@ -493,16 +509,16 @@ _$MenuStateCopyWith<_MenuState> get copyWith => __$MenuStateCopyWithImpl<_MenuSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MenuState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&const DeepCollectionEquality().equals(other._items, _items));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MenuState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.table, table) || other.table == table)&&const DeepCollectionEquality().equals(other._items, _items)&&(identical(other.error, error) || other.error == error));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,const DeepCollectionEquality().hash(_items));
+int get hashCode => Object.hash(runtimeType,isLoading,table,const DeepCollectionEquality().hash(_items),error);
 
 @override
 String toString() {
-  return 'MenuState(isLoading: $isLoading, items: $items)';
+  return 'MenuState(isLoading: $isLoading, table: $table, items: $items, error: $error)';
 }
 
 
@@ -513,11 +529,11 @@ abstract mixin class _$MenuStateCopyWith<$Res> implements $MenuStateCopyWith<$Re
   factory _$MenuStateCopyWith(_MenuState value, $Res Function(_MenuState) _then) = __$MenuStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, List<MenuItem> items
+ bool isLoading, Table? table, List<MenuItem> items, String error
 });
 
 
-
+@override $TableCopyWith<$Res>? get table;
 
 }
 /// @nodoc
@@ -530,15 +546,29 @@ class __$MenuStateCopyWithImpl<$Res>
 
 /// Create a copy of MenuState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? items = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? table = freezed,Object? items = null,Object? error = null,}) {
   return _then(_MenuState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
-as List<MenuItem>,
+as bool,table: freezed == table ? _self.table : table // ignore: cast_nullable_to_non_nullable
+as Table?,items: null == items ? _self._items : items // ignore: cast_nullable_to_non_nullable
+as List<MenuItem>,error: null == error ? _self.error : error // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
+/// Create a copy of MenuState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TableCopyWith<$Res>? get table {
+    if (_self.table == null) {
+    return null;
+  }
 
+  return $TableCopyWith<$Res>(_self.table!, (value) {
+    return _then(_self.copyWith(table: value));
+  });
+}
 }
 
 // dart format on

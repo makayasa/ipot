@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MenuItemModel {
 
- int get id; String get name; String get description; double get price; int get categoryId; String get imageUrl; List<CustomizationModel> get customizations;
+ int get id; String get name; String get description; double get price; int get categoryId; String? get imageUrl;@JsonKey(name: 'customization_groups') List<CustomizationModel> get customizations;
 /// Create a copy of MenuItemModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $MenuItemModelCopyWith<$Res>  {
   factory $MenuItemModelCopyWith(MenuItemModel value, $Res Function(MenuItemModel) _then) = _$MenuItemModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String name, String description, double price, int categoryId, String imageUrl, List<CustomizationModel> customizations
+ int id, String name, String description, double price, int categoryId, String? imageUrl,@JsonKey(name: 'customization_groups') List<CustomizationModel> customizations
 });
 
 
@@ -65,15 +65,15 @@ class _$MenuItemModelCopyWithImpl<$Res>
 
 /// Create a copy of MenuItemModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? description = null,Object? price = null,Object? categoryId = null,Object? imageUrl = null,Object? customizations = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,Object? description = null,Object? price = null,Object? categoryId = null,Object? imageUrl = freezed,Object? customizations = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double,categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
-as int,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String,customizations: null == customizations ? _self.customizations : customizations // ignore: cast_nullable_to_non_nullable
+as int,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,customizations: null == customizations ? _self.customizations : customizations // ignore: cast_nullable_to_non_nullable
 as List<CustomizationModel>,
   ));
 }
@@ -159,7 +159,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String description,  double price,  int categoryId,  String imageUrl,  List<CustomizationModel> customizations)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String name,  String description,  double price,  int categoryId,  String? imageUrl, @JsonKey(name: 'customization_groups')  List<CustomizationModel> customizations)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _MenuItemModel() when $default != null:
 return $default(_that.id,_that.name,_that.description,_that.price,_that.categoryId,_that.imageUrl,_that.customizations);case _:
@@ -180,7 +180,7 @@ return $default(_that.id,_that.name,_that.description,_that.price,_that.category
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String description,  double price,  int categoryId,  String imageUrl,  List<CustomizationModel> customizations)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String name,  String description,  double price,  int categoryId,  String? imageUrl, @JsonKey(name: 'customization_groups')  List<CustomizationModel> customizations)  $default,) {final _that = this;
 switch (_that) {
 case _MenuItemModel():
 return $default(_that.id,_that.name,_that.description,_that.price,_that.categoryId,_that.imageUrl,_that.customizations);case _:
@@ -200,7 +200,7 @@ return $default(_that.id,_that.name,_that.description,_that.price,_that.category
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String description,  double price,  int categoryId,  String imageUrl,  List<CustomizationModel> customizations)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String name,  String description,  double price,  int categoryId,  String? imageUrl, @JsonKey(name: 'customization_groups')  List<CustomizationModel> customizations)?  $default,) {final _that = this;
 switch (_that) {
 case _MenuItemModel() when $default != null:
 return $default(_that.id,_that.name,_that.description,_that.price,_that.categoryId,_that.imageUrl,_that.customizations);case _:
@@ -215,7 +215,7 @@ return $default(_that.id,_that.name,_that.description,_that.price,_that.category
 @JsonSerializable()
 
 class _MenuItemModel extends MenuItemModel {
-  const _MenuItemModel({required this.id, required this.name, required this.description, required this.price, required this.categoryId, required this.imageUrl, required final  List<CustomizationModel> customizations}): _customizations = customizations,super._();
+  const _MenuItemModel({required this.id, required this.name, required this.description, required this.price, required this.categoryId, this.imageUrl, @JsonKey(name: 'customization_groups') required final  List<CustomizationModel> customizations}): _customizations = customizations,super._();
   factory _MenuItemModel.fromJson(Map<String, dynamic> json) => _$MenuItemModelFromJson(json);
 
 @override final  int id;
@@ -223,9 +223,9 @@ class _MenuItemModel extends MenuItemModel {
 @override final  String description;
 @override final  double price;
 @override final  int categoryId;
-@override final  String imageUrl;
+@override final  String? imageUrl;
  final  List<CustomizationModel> _customizations;
-@override List<CustomizationModel> get customizations {
+@override@JsonKey(name: 'customization_groups') List<CustomizationModel> get customizations {
   if (_customizations is EqualUnmodifiableListView) return _customizations;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_customizations);
@@ -265,7 +265,7 @@ abstract mixin class _$MenuItemModelCopyWith<$Res> implements $MenuItemModelCopy
   factory _$MenuItemModelCopyWith(_MenuItemModel value, $Res Function(_MenuItemModel) _then) = __$MenuItemModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name, String description, double price, int categoryId, String imageUrl, List<CustomizationModel> customizations
+ int id, String name, String description, double price, int categoryId, String? imageUrl,@JsonKey(name: 'customization_groups') List<CustomizationModel> customizations
 });
 
 
@@ -282,15 +282,15 @@ class __$MenuItemModelCopyWithImpl<$Res>
 
 /// Create a copy of MenuItemModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? description = null,Object? price = null,Object? categoryId = null,Object? imageUrl = null,Object? customizations = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,Object? description = null,Object? price = null,Object? categoryId = null,Object? imageUrl = freezed,Object? customizations = null,}) {
   return _then(_MenuItemModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as double,categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
-as int,imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
-as String,customizations: null == customizations ? _self._customizations : customizations // ignore: cast_nullable_to_non_nullable
+as int,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String?,customizations: null == customizations ? _self._customizations : customizations // ignore: cast_nullable_to_non_nullable
 as List<CustomizationModel>,
   ));
 }

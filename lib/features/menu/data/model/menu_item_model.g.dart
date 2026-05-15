@@ -13,8 +13,8 @@ _MenuItemModel _$MenuItemModelFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       price: (json['price'] as num).toDouble(),
       categoryId: (json['category_id'] as num).toInt(),
-      imageUrl: json['image_url'] as String,
-      customizations: (json['customizations'] as List<dynamic>)
+      imageUrl: json['image_url'] as String?,
+      customizations: (json['customization_groups'] as List<dynamic>)
           .map((e) => CustomizationModel.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -27,5 +27,7 @@ Map<String, dynamic> _$MenuItemModelToJson(_MenuItemModel instance) =>
       'price': instance.price,
       'category_id': instance.categoryId,
       'image_url': instance.imageUrl,
-      'customizations': instance.customizations.map((e) => e.toJson()).toList(),
+      'customization_groups': instance.customizations
+          .map((e) => e.toJson())
+          .toList(),
     };
